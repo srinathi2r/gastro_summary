@@ -2,11 +2,16 @@ import streamlit as st
 import openai
 import os
 
-# Initialize OpenAI client with your API key
-api_key = os.environ.get("OPENAI_API_KEY")
-if not api_key:
-    st.error("OpenAI API key not found in environment variables")
-else:
+# Function to get OpenAI API key
+def get_api_key():
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        st.error("OpenAI API key not found in environment variables. Please set the API key.")
+    return api_key
+
+# Initialize OpenAI client
+api_key = get_api_key()
+if api_key:
     openai.api_key = api_key
 
 def generate_summary(histo_date, colonoscopy_date, detailed_finding_histo, detailed_finding_colonoscopy):
