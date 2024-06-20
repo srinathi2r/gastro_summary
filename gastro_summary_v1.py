@@ -29,7 +29,8 @@ def generate_summary(histo_date, colonoscopy_date, detailed_finding_histo, detai
     response = openai.completions.create(
         model="gpt-3.5-turbo-instruct",
         prompt=prompt,
-        max_tokens=150
+        max_tokens=150,
+        temperature=0.1
         )
 
     # Extract the response
